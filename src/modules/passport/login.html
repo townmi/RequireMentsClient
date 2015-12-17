@@ -1,0 +1,23 @@
+<header>
+	<a href=""><i class="fa icon-left"></i></a>
+	<h2>{{title}}</h2>
+	<a href="" class="header_right"><i class="fa icon-account"></i></a>
+</header>
+<section class="passport_reg">
+	<p>
+		<span class="icon"></span>
+		<input type="tel" placeholder="请输入手机号码" required ng-model="formData.mobile" focus-me ng-blur="checkMobile();">
+		<a href="" class="clear" ng-show="formData.mobile" ng-click="clear('mobile');"><i class="fa icon-close"></i></a>
+	</p>
+	<p>
+		<span class="icon"></span>
+		<input type="password" placeholder="请输入密码（6-18位数字与字母组合）" ng-model="formData.password" ng-blur="checkPassword();">
+		<a href="" class="clear" ng-show="formData.password" ng-click="clear('password');"><i class="fa icon-close"></i></a>
+	</p>
+</section>
+
+<section class="passport_btn">
+	<button ng-class="{'disabled': !(formData.mobile&&formData.password)}" ng-click="login();">立即登录</button>
+	<a href="" class="forget_link">忘记密码</a>
+</section>
+
