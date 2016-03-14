@@ -1,0 +1,34 @@
+<div header data-type="main"></div>
+<div class="inner" layout-margin id="layout" >
+    <div sidebar class="sidebar-left animated bounceInLeft"></div>
+    <main  class="main" ng-cloak >
+        <div class="animated bounceInUp md-padding">
+            <div style="margin-top: 8px">
+                <md-content ng-repeat="(key, value) in dataList" id="{{key}}" class="organization-content" >
+                    <md-list  ng-cloak >
+                        <md-list-item ng-click="accordionNavigation(key, $event)">
+                            <p> {{staff[key]}}--{{(value|| []).length}}人 </p>
+                        </md-list-item>
+                    </md-list>
+                    <md-divider></md-divider>
+                    <md-list class="hide">
+                        <md-list-item class="md-2-line" ng-repeat="item in value">
+                            <md-icon class="material-icons md-avatar">perm_identity</md-icon>
+                            <div class="md-list-item-text">
+                                <h3>{{item.name}}</h3>
+                                <p>{{item.description}}</p>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+
+
+
+
+

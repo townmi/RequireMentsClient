@@ -1,0 +1,56 @@
+<md-dialog aria-label="编辑需求">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="md-title">修改需求</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width: 800px;">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>需求名称</label>
+                    <input ng-model="data.name">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>需求编号</label>
+                    <input ng-model="data.taskid" disabled>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>归属项目</label>
+                    <input  ng-model="data.belong">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>需求描述</label>
+                    <input ng-model="data.brief" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>优先级</label>
+                    <md-select placeholder="优先级" ng-model="data.priority" style="min-width: 200px;">
+                        <md-option ng-value="p.value" ng-repeat="p in priorities">{{p.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" ng-if="data.taskstatus == 0">
+                    <label>审核者</label>
+                    <md-select placeholder="审核者" ng-model="data.reviewid" style="min-width: 200px;">
+                        <md-option ng-value="r.userid" ng-repeat="r in reviewerList">{{r.username}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <div class="md-block" ng-if="data.taskstatus >= 2">
+                    <label style="display: block;color:rgba(0, 0, 0, 0.541176);font-size: 12px;padding: 8px 0;">人员分派</label>
+                    <md-checkbox ng-checked="exists(item.value, selected)" ng-click="toggle(item.value, selected)" ng-repeat="item in checktypes">
+                        {{ item.title }}
+                    </md-checkbox>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="answer('useful')" style="margin-right:20px;" md-autofocus>取消</md-button>
+            <md-button class="md-primary" ng-click="answer('not useful')">确定</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

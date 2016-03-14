@@ -1,0 +1,31 @@
+<div header data-type="main"></div>
+<div class="inner" layout-margin id="layout">
+    <div sidebar class="sidebar-left animated bounceInLeft"></div>
+    <main  class="main">
+        <div ng-cloak  layout="row" layout-wrap layout-align="center center" layout-xs="column" class=" animated bounceInDown">
+            <div flex layout="column">
+                <div class="md-padding" layout="row" layout-wrap layout-align="left start" layout-xs="column">
+                    <div md-padding flex="100" flex-sm="100" flex-xs="100" layout="column">
+                        <div class="ui_account_warp">
+                            <div class="ui_account" layout="column">
+                                <img height="483px" ng-src="{{'resource/images/account_background.jpg'}}" class="md-card-image" alt="Washed Out">
+                                <div class="ui_account_box">
+                                    <md-list-item class="md-3-line">
+                                        <img style="width: 56px; height: 56px; margin-left: 30px;" ng-src="{{'resource/images/avator.jpg'}}" class="md-avatar" alt="{{message.who}}">
+                                        <div class="md-list-item-text" style="text-align: left; color: #ffffff; font-size: 20px;">
+                                            {{user.nickname}}
+                                        </div>
+                                        <div class="md-list-item-text" style="padding-right: 30px; text-align: right;">
+                                            <md-button class="md-raised" aria-label="Create"  ng-click="dialogModifyInfo($event)">修改个人资料</md-button>
+                                        </div>
+                                    </md-list-item>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>

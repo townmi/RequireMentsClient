@@ -1,0 +1,122 @@
+{
+  "code": 0,
+  "data": {
+    "process": 7,
+    "title": "开发阶段",
+    "date": "2015年2月3日 19:00",
+    "basic": {
+      "name": "理财宝的一个需求",
+      "number": "AX0001",
+      "project": "星火Wap",
+      "source": "运营",
+      "description": "理财宝的一个需求理财宝的一个需求理财宝的一个需求理财宝的一个需求理财宝的一个需求 理财宝的一个需求理财宝的一个需求理财宝的一个需求理财宝的一个需求理财宝的一个需求 理财宝的一个需求理财宝的一个需求理财宝的一个需求理财宝的一个需求理财宝的一个需求<br />A description list is perfect for defining terms. Euismod Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit. Donec id elit non mi porta gravida at eget metus. Malesuada porta Etiam porta sem malesuada magna mollis euismod. Felis euismod semper eget lacinia Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+      "priority": 1,
+      "reviewer": {
+        "userId": 2,
+        "name": "张四(Leader)"
+      },
+      "creator": {
+        "userId": 1,
+        "name": "张三(PM)"
+      }
+    },
+    "details": [
+      {
+        "process": 1,
+        "title": "需求提交",
+        "date": "2015年2月3日 19:00"
+      },
+      {
+        "process": 2,
+        "title": "需求评审",
+        "date": "2015年2月3日 19:00",
+        "info": {
+          "comment": "写的非常好",
+          "status": "pass"
+        }
+      },
+      {
+        "process": 3,
+        "title": "策划方案",
+        "date": "2015年2月3日 19:00",
+        "info": {
+          "attachment": [
+            {
+              "filename": "design1.docx",
+              "url": "http://www.baidu.com"
+            },
+            {
+              "filename": "design2.docx",
+              "url": "http://www.baidu.com"
+            }
+          ]
+        }
+      },
+      {
+        "process": 4,
+        "title": "需求分派",
+        "date": "2015年2月3日 19:00",
+        "info": {
+          "developer": [
+            {
+              "userId": 10,
+              "name": "王开发1"
+            },
+            {
+              "userId": 11,
+              "name": "王开发2"
+            }
+          ],
+          "tester": [
+            {
+              "userId": 20,
+              "name": "王测试1"
+            },
+            {
+              "userId": 21,
+              "name": "王测试2"
+            }
+          ],
+          "fe": [
+            {
+              "userId": 30,
+              "name": "王FE1"
+            },
+            {
+              "userId": 31,
+              "name": "王FE2"
+            }
+          ]
+        }
+      },
+      {
+        "process": 5,
+        "title": "需求锁定",
+        "date": "2015年2月3日 19:00",
+        "info": {
+          "from": "2015年2月3日 19:00",
+          "to": "2015年2月4日 19:00"
+        }
+      },
+      {
+        "process": 6,
+        "title": "三方审核",
+        "date": "2015年2月3日 19:00",
+        "info": {
+          "developer": {
+            "from": "2015年2月3日 19:00",
+            "to": "2015年2月3日 19:00"
+          },
+          "fe": {
+            "from": "2015年2月3日 19:00",
+            "to": "2015年2月3日 19:00"
+          },
+          "tester": {
+            "from": "2015年2月3日 19:00",
+            "to": "2015年2月3日 19:00"
+          }
+        }
+      }
+    ]
+  }
+}

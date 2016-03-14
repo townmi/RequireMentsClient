@@ -1,0 +1,23 @@
+<md-dialog aria-label="截止时间" style="overflow: initial;">
+    <form name="">
+        <md-dialog-content style="width: 800px;" class="md-dialog-content">
+            <h2 class="md-title">三方审核</h2>
+            <div class="md-block">
+                <div layout>
+                    <div flex="50">
+                        <div calendar date="startDate" time="startTime" date-label="会议时间" ></div>
+                    </div>
+                </div>
+            </div>
+            <md-input-container class="md-block">
+                <label>会议地点</label>
+                <input type="text"ng-model="meet.room"/>
+            </md-input-container>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()" style="margin-right:20px;" md-autofocus>取消</md-button>
+            <md-button class="md-primary" ng-click="answer('not useful')">确定</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

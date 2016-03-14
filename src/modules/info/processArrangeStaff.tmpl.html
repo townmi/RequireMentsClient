@@ -1,0 +1,17 @@
+<md-dialog aria-label="分派人员">
+    <md-dialog-content style="width: 800px;" class="md-dialog-content">
+        <h2 class="md-title">请分派{{staff}}</h2>
+            <div layout="row" layout-wrap flex>
+                <div flex="25" ng-repeat="item in groupuser">
+                    <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                        {{ item.nickname }}
+                    </md-checkbox>
+                </div>
+            </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()" style="margin-right:20px;" md-autofocus>取消</md-button>
+        <md-button class="md-primary" ng-click="submit()">确定</md-button>
+    </md-dialog-actions>
+</md-dialog>

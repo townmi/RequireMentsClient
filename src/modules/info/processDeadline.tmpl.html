@@ -1,0 +1,16 @@
+<md-dialog aria-label="截止时间">
+    <form name="">
+        <md-dialog-content style="width: 800px;" class="md-dialog-content">
+            <h2 class="md-title">截止时间——{{staff}}</h2>
+            <md-datepicker name="dateField" ng-model="startDate" md-placeholder="开始时间"
+                           required md-min-date="minDate" md-max-date="maxDate"></md-datepicker>&nbsp;&nbsp;&nbsp;&nbsp;
+            <md-datepicker name="dateField" ng-model="endDate" md-placeholder="结束时间"
+                           required md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()" style="margin-right:20px;" md-autofocus>取消</md-button>
+            <md-button class="md-primary" ng-click="submit()">确定</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

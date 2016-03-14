@@ -1,0 +1,30 @@
+<md-sidenav class="md-sidenav-left md-padding sidebar-nav" md-component-id="left" md-is-locked-open="true">
+    <md-list>
+        <md-list-item class="md-1-line">
+            <md-button ui-sref="static.home" class="md-primary sidebar-button" ng-class="{'button-active':$state.current.name == 'static.home'}">
+                <md-icon class="material-icons">home</md-icon>首页
+            </md-button>
+        </md-list-item>
+        <md-list-item class="md-1-line">
+            <md-button ui-sref="static.all" class="md-primary sidebar-button" ng-class="{'button-active':$state.current.name == 'static.all'}">
+                <md-icon class="material-icons">view_module</md-icon>汇总
+            </md-button>
+        </md-list-item>
+        <md-list-item class="md-1-line">
+            <md-button ui-sref="static.organization" class="md-primary sidebar-button" ng-class="{'button-active':$state.current.name == 'static.organization'}">
+                <md-icon class="material-icons">group_work</md-icon>组织
+            </md-button>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-1-line">
+            <md-button ui-sref="static.account" class="md-primary sidebar-button"  ng-class="{'button-active':$state.current.name == 'static.account'}">
+                <md-icon class="material-icons">account_box</md-icon>个人资料
+            </md-button>
+        </md-list-item>
+        <md-list-item class="md-1-line">
+            <md-button ng-click="close()" class="md-primary sidebar-button" >
+                <md-icon class="material-icons">settings</md-icon>设置
+            </md-button>
+        </md-list-item>
+    </md-list>
+</md-sidenav>

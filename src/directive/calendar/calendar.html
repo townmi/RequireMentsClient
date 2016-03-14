@@ -1,0 +1,48 @@
+<div>
+    <md-datepicker ng-model="date" md-placeholder="{{dateLabel}}"  md-min-date="minDate"></md-datepicker>
+    <div style="display: inline-block;position: relative;">
+        <md-button class="md-icon-button" aria-label="time" ng-click="showTimePanel($event)">
+            <md-icon class="material-icons">av_timer</md-icon>
+        </md-button>
+        <span>{{time}}</span>
+    </div>
+
+</div>
+
+<!--<div class="ui-timepicker-panel md-whiteframe-1dp md-whiteframe-z1"ng-show="isOpen" >
+    <div class="ui-timepicker-title" ng-click="isOpen=false">
+        {{timeLabel}}
+    </div>
+    <div class="ui-timepicker-content">
+        <md-button>9:30 AM</md-button>
+        <md-button>10:30 AM</md-button>
+        <md-button>11:30 AM</md-button>
+        <md-button>1:30 AM</md-button>
+        <md-button>2:30 AM</md-button>
+        <md-button>3:30 AM</md-button>
+        <md-button>4:30 AM</md-button>
+        <md-button>5:30 AM</md-button>
+        <md-button>6:30 AM</md-button>
+    </div>
+</div>-->
+<!--<span>{{time.hour ? (time.hour > 9 ? time.hour : '0' + time.hour) : '00'}}:{{time.minute ? (time.minute > 9 ? time.minute : '0' + time.minute) : '00'}}:{{time.second ? (time.second > 9 ? time.second : '0' + time.second) : '00'}}</span>-->
+<!--
+<div layout>
+    <div flex="15" layout layout-align="center center">
+        <span class="md-body-1">Hour</span>
+    </div>
+    <md-slider flex="80" md-discrete ng-model="time.hour" step="1" min="0" max="23" aria-label="rating" class="md-primary"></md-slider>
+
+</div>
+<div layout>
+    <div flex="15" layout layout-align="center center">
+        <span class="md-body-1">Minute</span>
+    </div>
+    <md-slider flex="80" md-discrete ng-model="time.minute" step="1" min="0" max="59" aria-label="rating" class="md-primary"></md-slider>
+</div>
+<div layout>
+    <div flex="15" layout layout-align="center center">
+        <span class="md-body-1">Second</span>
+    </div>
+    <md-slider flex="80" md-discrete ng-model="time.second" step="1" min="0" max="59" aria-label="rating" class="md-primary"></md-slider>
+</div>-->

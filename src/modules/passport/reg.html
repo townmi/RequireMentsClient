@@ -1,3 +1,48 @@
+<div class="bg-white">
+	<div header data-type="reg"></div>
+	<div layout="row" layout-wrap layout-align="center start" layout-xs="column" style="margin-top: 30px;">
+	<div flex="40" layout="column">
+		<div layout="column" ng-cloak>
+			<md-content>
+				<form name="regForm" ng-submit="register()">
+					<md-input-container class="md-block">
+						<label>用户名/手机号/邮箱</label>
+						<input required name="tmpname" ng-model="user.tmpname" ng-pattern="/^(1[0-9]{10})|([a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+)|(^(?![0-9])(?!.*?_$)[a-zA-Z0-9]{4,20})$/">
+						<div ng-messages="regForm.tmpname.$error">
+							<div ng-message="required">必填项.</div>
+							<div ng-message="pattern" style="opacity: 1; margin-top: 0px;">用户名由字母数字下划线组成，4-20位，不能以数字开头和以下划线结尾。手机号为11位中国地区号码。邮箱需要符合地址要求。</div>
+						</div>
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>请输入密码（8-16位数字与字母组合）</label>
+						<input  md-maxlength="16" ng-minlength="8" required name="password" type="password" ng-model="user.password">
+						<div ng-messages="regForm.password.$error">
+							<div ng-message="md-maxlength">不得超过16个字符.</div>
+							<div ng-message="minlength" >不得少于8个字符.</div>
+							<div ng-message="required">必填项.</div>
+						</div>
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>确认密码</label>
+						<input required name="passwordrepeat" type="password" ng-model="user.passwordrepeat" equalizer-to="user.password">
+						<div ng-messages="regForm.passwordrepeat.$error">
+							<div ng-message="required">必填项.</div>
+							<div ng-message="equalizerTo">两次输入的密码不一致.</div>
+						</div>
+					</md-input-container>
+					<section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+						<span class="login-error-section">{{regMsg}}</span>
+						<md-button class="md-primary md-raised md-hue-1" type="submit"  ng-disabled="regForm.$invalid">注册</md-button>
+					</section>
+				</form>
+			</md-content>
+		</div>
+	</div>
+
+</div>
+</div>
+
+<!--
 <header>
 	<a href=""><i class="fa icon-left"></i></a>
 	<h2>注册</h2>
@@ -32,4 +77,4 @@
 
 <section class="passport_btn">
 	<button ng-class="{'disabled': !(formData.mobile&&formData.password&&formData.captcha&&formData.agree)}" ng-click="reg();">立即注册</button>
-</section>
+</section>-->

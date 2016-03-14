@@ -44,20 +44,20 @@ define( [
                             var pow=1,m=0;
                             for(m=15;m>j;m--){
                                 pow *= 2;
-                            }        
+                            }
                         bt[16*i+j]=parseInt(k/pow)%2;
                         }
                     }
                     for(p = leng;p<4;p++){
                         var k = 0;
-                        for(q=0;q<16;q++){      
+                        for(q=0;q<16;q++){
                             var pow=1,m=0;
                             for(m=15;m>q;m--){
                                 pow *= 2;
-                            }        
+                            }
                             bt[16*p+q]=parseInt(k/pow)%2;
                         }
-                    }  
+                    }
                 }else{
                     for(i = 0;i<4;i++){
                         var k = str.charCodeAt(i);

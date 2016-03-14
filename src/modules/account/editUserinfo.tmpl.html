@@ -1,0 +1,65 @@
+ <md-dialog aria-label="修改资料" style="width: 50%;"> 
+     <md-toolbar> 
+         <div class="md-toolbar-tools"> 
+             <h2>修改资料</h2> 
+             <span flex></span> 
+            <md-button class="md-icon-button" ng-click="cancel()"> 
+                 <md-icon class="material-icons">close</md-icon> 
+            </md-button>
+         </div>
+     </md-toolbar>
+     <md-dialog-content >
+         <div class="md-dialog-content">
+             <form name="userForm">
+                 <md-input-container class="md-block">
+                     <label>用户名：</label>
+                     <input name="username" required ng-model="user.username" type="text"  ng-pattern="/^(?!.*?_$)[a-zA-Z0-9]{4,20}$/">
+                     <div ng-messages="userForm.username.$error">
+                         <div ng-message="required">必填项.</div>
+                         <div ng-message="pattern">用户名由字母数字下划线组成，4-20位，不能以数字开头和以下划线结尾.</div>
+                     </div>
+                 </md-input-container>
+                 <md-input-container class="md-block">
+                     <label>姓名：</label>
+                     <input ng-model="user.nickname" type="text" name="nickname" ng-pattern="/(^[\u4e00-\u9fff]{2,10}$)|(^([A-Za-z]+\s?)*[A-Za-z]$)/">
+                     <div ng-messages="userForm.nickname.$error">
+                         <div ng-message="pattern">中文姓名为2-10个汉字，英文姓名使用一个空格分隔.</div>
+                     </div>
+                 </md-input-container>
+                 <md-input-container class="md-block">
+                     <label>手机号码：</label>
+                     <input ng-model="user.mobile" type="text" name="mobile" ng-pattern="/^1[0-9]{10}$/">
+                     <div ng-messages="userForm.mobile.$error">
+                         <div ng-message="pattern">手机号码格式错误.</div>
+                     </div>
+                 </md-input-container>
+                 <md-input-container class="md-block">
+                     <label>邮箱账号：</label>
+                     <input ng-model="user.email" type="text" name="email" ng-pattern="/^[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+$/" >
+                     <div ng-messages="userForm.email.$error">
+                         <div ng-message="pattern">邮箱地址格式错误.</div>
+                     </div>
+                 </md-input-container>
+                 <md-input-container class=" md-block">
+                     <label>所属组织：</label>
+                     <md-select placeholder="选择组织" ng-model="user.group" style="min-width: 200px;">
+                         <md-option ng-value="item.group" ng-repeat="item in groupList">{{item.name}}</md-option>
+                     </md-select>
+                 </md-input-container>
+                 <md-input-container class="md-block">
+                     <label style="position: relative; left: 0; top: 2px; margin-right: 12px;">角色：</label>
+                     <md-radio-group ng-model="user.userrole" >
+                         <md-radio-button class="md-primary" value="leader" style="padding-right: 10px; display: inline-block; vertical-align: middle; margin: 0;">主管</md-radio-button>
+                         <md-radio-button class="md-primary" value="header" style="padding-right: 10px; display: inline-block; vertical-align: middle; margin: 0;">组长</md-radio-button>
+                         <md-radio-button class="md-primary" value="group" style="padding-right: 10px; display: inline-block; vertical-align: middle; margin: 0;">成员</md-radio-button>
+                     </md-radio-group>
+                 </md-input-container>
+             </form>
+         </div>
+     </md-dialog-content>
+     <md-dialog-actions layout="row"> 
+         <span flex></span> 
+         <md-button class="md-primary" ng-click="submit()">确定</md-button>
+         <md-button ng-click="cancel()" style="margin-right:20px;" md-autofocus>取消</md-button>
+     </md-dialog-actions>
+ </md-dialog>

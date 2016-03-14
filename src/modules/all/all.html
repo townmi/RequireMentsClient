@@ -1,0 +1,63 @@
+<div header data-type="main"></div>
+<div class="inner" layout-margin id="layout">
+    <div sidebar class="sidebar-left animated bounceInLeft"></div>
+    <main  class="main">
+        <div ng-cloak  layout="row" layout-wrap layout-align="center center" layout-xs="column" class=" animated bounceInUp">
+            <div flex layout="column">
+                <div class="md-padding" layout="row" layout-wrap layout-align="left start" layout-xs="column" style="margin-top: 8px;;">
+                    <div md-padding flex="100" flex-sm="100" flex-xs="100" layout="column" class="table-responsive">
+                        <div class="ui_table_head">
+                            <h2 style="line-height: 64px;padding-left: 30px; margin: 0;">需求汇总</h2>
+                        </div>
+                        <table class="ui_table">
+                            <thead>
+                                <tr>
+                                    <th class="ui_text_left" style="width:100px;">排序</th>
+                                    <th>需求名称</th>
+                                    <th style="width:130px;">提出者</th>
+                                    <th>状态</th>
+                                    <th class="ui_text_center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in dataList">
+                                    <td class="ui_text_left" ng-bind="$index-0+1"></td>
+                                    <td><a ng-href="index.html#/static/{{item.id}}" ng-bind="item.name"></a></td>
+                                    <td ng-bind="item.user.name"></td>
+                                    <td ng-bind="item.id"></td>
+                                    <td><md-button>跟踪</md-button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="ui_table_page">
+                            <div class="ui_table_page_title">
+                                当前<span class="ui_table_page_nums">1</span>到<span class="ui_table_page_nums">10</span>共<span class="ui_table_page_nums">10518</span>条数据
+                            </div>
+                            <div class="ui_table_page_action">
+                                <div class="ui_table_page_action_select">
+                                    每页显示
+                                    <select name="" id="">
+                                        <option value="10">10</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    条
+                                </div>
+                                <div class="ui_table_page_btn">
+                                    <span class="ui_table_page_btns">上一页</span>
+                                    <!--
+                                    <span class="ui_table_page_btns">1</span>
+                                    <span class="ui_table_page_btns">2</span>
+                                    <span class="ui_table_page_btns">3</span>
+                                    -->
+                                    <span class="ui_table_page_btns">下一页</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>

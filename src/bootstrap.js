@@ -5,7 +5,7 @@
  */
 require.config( {
     paths : {
-        "angular" : 'vendor/angular/angular.min',
+        "angular" : 'vendor/angular/angular',
     } ,
     shim : {
         angular : {
@@ -66,8 +66,10 @@ require.config( {
         } ,
         'vendor/angular/angular-ui-router' : [ 'angular' ] ,
         'vendor/angular/angular-cookies.min' : [ 'angular' ] ,
-        'vendor/angular/ui-bootstrap-custom-tpls-0.13.4.min' : [ 'angular' ] ,
-        'vendor/angular/angular-animate' : [ 'angular' ]
+        'vendor/angular/angular-animate' : [ 'angular' ],
+        'vendor/angular/angular-material.min' : [ 'angular' ],
+        'vendor/angular/angular-aria.min' : [ 'angular' ],
+        'vendor/angular/angular-messages.min' : [ 'angular' ]
     } ,
     map : {
         '*' : {
@@ -75,7 +77,8 @@ require.config( {
             text : 'vendor/require/text'
         }
     } ,
-    urlArgs: "bust=" +  (new Date()).getTime()
+    urlArgs: "bust="
+    //urlArgs: "bust=" +  (new Date()).getTime()
 } );
 
 require( [
@@ -83,10 +86,29 @@ require( [
     'vendor/angular/angular-ui-router',
     'vendor/angular/angular-cookies.min',
     'vendor/angular/angular-animate',
-    'vendor/angular/ui-bootstrap-custom-tpls-0.13.4.min',
-    './app'
+    'vendor/angular/angular-material.min',
+    'vendor/angular/angular-aria.min',
+    'vendor/angular/angular-messages.min',
+    './app',
+
+    'service/UserLoginService',
+    'directive/header/header',
+    'directive/sidebar/sidebar',
+    'directive/process/process',
+    'directive/equalizer/equalizer',
+    'directive/calendar/calendar',
+    'factory/Access'
+
 ] , function ( angular ) {
-    angular.module( 'all' , ['ui.router', "ui.bootstrap", "ngCookies", "ngAnimate", 'application' ] );
-    angular.module( 'boot' , [ 'all' ] );
-    angular.bootstrap( document , [ 'boot' ] );
+    angular.module( 'all' , [
+        'ui.router',
+        "ngCookies",
+        "ngAnimate",
+        'ngMaterial',
+        'ngAria',
+        'ngMessages',
+        'application'
+    ] );
+    angular.module( 'boot' , [ 'all'] );
+    angular.bootstrap( document , [ 'boot'] );
 } );

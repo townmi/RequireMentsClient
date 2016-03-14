@@ -1,0 +1,98 @@
+<div header data-type="main"></div>
+<div class="inner" layout-margin id="layout">
+    <div sidebar class="sidebar-left animated bounceInLeft"></div>
+    <main  class="main">
+        <div ng-cloak  layout="row" layout-wrap layout-align="center center" layout-xs="column" class=" animated bounceInUp">
+            <div flex layout="column">
+                <div class="md-padding" layout="row" layout-wrap layout-align="left start" layout-xs="column">
+                    <div md-padding flex="50" flex-sm="100" flex-xs="100" layout="column">
+                        <md-card  ng-repeat="item in dataList" ng:show="$index % 2 == 0">
+
+                            <md-card-header >
+                                <md-card-avatar>
+                                    <md-icon class="material-icons">account_circle</md-icon>
+                                </md-card-avatar>
+                                <md-card-header-text>
+                                    <span class="md-title">{{item.creatornickname}}</span>
+                                    <span class="md-subhead">{{item.creatorgroup}}</span>
+                                </md-card-header-text>
+                                <div style="flex-direction: column; flex:inherit; width: 100px" >
+                                    <div process data-number="{{item.taskstatus}}" class="item-process"></div>
+                                </div>
+                                <div style="flex-direction: column; flex:inherit; width: 50px;" >
+                                   <span class="item-priority" ng-class="{'priority-primary':item.priority == 1, 'priority-info':item.priority == 0,'priority-warn':item.priority == 2,'priority-danger':item.priority == 3}">{{priorityNames[item.priority]}}</span>
+                                </div>
+                            </md-card-header>
+                            <md-divider></md-divider>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{item.name}}</span>
+                                    <span class="md-subhead">{{item.status}}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <p>
+                                    {{item.brief}}
+                                </p>
+                            </md-card-content>
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button ng-href="index.html#/static/info/{{item.taskid}}">查看</md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>
+                    <div md-padding flex="50" flex-sm="100" flex-xs="100" layout="column">
+                        <md-card  ng-repeat="item in dataList" ng:show="$index % 2 == 1">
+                            <md-card-header>
+                                <md-card-avatar>
+                                    <md-icon class="material-icons">account_circle</md-icon>
+                                </md-card-avatar>
+                                <md-card-header-text>
+                                    <span class="md-title">{{item.creatornickname}}</span>
+                                    <span class="md-subhead">{{item.creatorgroup}}</span>
+                                </md-card-header-text>
+                                <div style="flex-direction: column; flex:inherit; width: 100px" >
+                                    <div process data-number="{{item.taskstatus}}" class="item-process"></div>
+                                </div>
+                                <div style="flex-direction: column; flex:inherit; width: 50px;" >
+                                    <span class="item-priority" ng-class="{'priority-primary':item.priority == 1, 'priority-info':item.priority == 0,'priority-warn':item.priority == 2,'priority-danger':item.priority == 3}">{{priorityNames[item.priority]}}</span>
+                                </div>
+                            </md-card-header>
+                            <md-divider></md-divider>
+                            <!--<div >
+                                <md-progress-linear md-mode="determinate" value="70"></md-progress-linear>
+                            </div>-->
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{item.name}}</span>
+                                    <span class="md-subhead">{{item.status}}</span>
+                                </md-card-title-text>
+
+                            </md-card-title>
+                            <md-card-content>
+                                <p>
+                                    {{item.brief}}
+                                </p>
+                            </md-card-content>
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button ng-href="index.html#/static/info/{{item.taskid}}">查看</md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+<div style="position: fixed; right: 50px;bottom: 50px;" ng-if="user.group == 'PM'">
+    <md-button class="md-fab md-primary" aria-label="Create" ng-click="createItemDialog($event)">
+        <md-icon class="material-icons">create</md-icon>
+    </md-button>
+</div>
+
+
+
+
+
+
+

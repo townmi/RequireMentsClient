@@ -1,0 +1,50 @@
+<md-dialog aria-label="新建需求">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>新建需求</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width: 800px;">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>需求名称</label>
+                    <input type="text" ng-model="formData.name">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>归属项目</label>
+                    <input type="text" ng-model="formData.belong">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>需求描述</label>
+                    <textarea rows="5" ng-model="formData.brief"></textarea>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>审核者</label>
+                    <md-select placeholder="审核主管" ng-model="formData.reviewUser" style="min-width: 200px;">
+                        <md-option ng-value="user" ng-repeat="user in reviewList">{{user.nickname}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>优先级</label>
+                    <md-select placeholder="优先级" ng-model="formData.priority" style="min-width: 200px;">
+                        <md-option ng-value="p.value" ng-repeat="p in priorities">{{p.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()" style="margin-right:20px;" md-autofocus>
+                取消
+            </md-button>
+            <md-button class="md-primary" ng-click="submit()">
+                确定
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

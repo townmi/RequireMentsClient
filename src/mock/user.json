@@ -1,0 +1,26 @@
+[
+  { "code":1,
+    "name":"yuanyuan",
+    "group":"tuantuan",
+    "product":"yueyingbao",
+    "img":"resource/images/100-0.jpeg",
+    "url":"yiXinBao",
+    "newMessage": "true"
+  },
+  { "code":1,
+    "name":"tuantuan",
+    "group":"tuantuan",
+    "product":"yueyingbao",
+    "img":"resource/images/100-0.jpeg",
+    "url":"yueYingBao",
+    "newMessage": "false"
+  },
+  { "code":1,
+    "name":"lala",
+    "group":"tuantuan",
+    "product":"yueyingbao",
+    "img":"resource/images/100-0.jpeg",
+    "url":"suiXinBao",
+    "newMessage": "false"
+  }
+]

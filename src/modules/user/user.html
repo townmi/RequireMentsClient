@@ -1,0 +1,27 @@
+<div header data-type="main"></div>
+<div ng-controller="UserManager" ng-cloak="" class="listdemoListControls">
+
+    <md-content style="width:960px;margin: auto">
+        <md-list>
+            <md-toolbar>
+                    <md-list-item ng-repeat="tableTitle in tableTitle">
+                        <img alt="{{ tableTitle.name }}" ng-src="{{ tableTitle.img }}" class="md-avatar" ng-click="addFriends()">
+                        <p>{{ tableTitle.name }}</p>
+                        <p>{{ tableTitle.group }}</p>
+                        <p>{{ tableTitle.product }}</p>
+                        <p style="text-align: center">{{ tableTitle.something }}</p>
+                </md-list-item>
+            </md-toolbar>
+            <md-list-item ng-repeat="person in people">
+                <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar">
+                <p>{{ person.name }}</p>
+                <p>{{ person.group }}</p>
+                <p>{{ person.product }}</p>
+                <p><md-button class="md-primary md-raised" ng-click="showTabDialog($event,person.url)">修改</md-button><md-button class="md-primary md-raised" ng-click="showConfirm($event)">
+                    删除
+                </md-button></p>
+            </md-list-item>
+            <md-divider></md-divider>
+        </md-list>
+    </md-content>
+</div>

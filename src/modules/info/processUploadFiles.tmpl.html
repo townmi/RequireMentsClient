@@ -1,0 +1,16 @@
+<md-dialog aria-label="上传材料">
+    <form id="js_upload_file" action="http://10.106.88.87:3000/task/modify" method="post" enctype="multipart/form-data">
+        <md-dialog-content style="width: 800px;" class="md-dialog-content">
+            <h2 class="md-title">上传材料</h2>
+            <label>请选择文件</label>
+            <input type="file" name="taskFile"/>
+            <input type="hidden" name="taskid" ng-value="taskid"/>
+            <input type="hidden" name="token" ng-value="token"/>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()" style="margin-right:20px;" md-autofocus>取消</md-button>
+            <md-button class="md-primary" ng-click="submit()">确定</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

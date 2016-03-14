@@ -1,0 +1,17 @@
+<div  ng-cloak="" class="listdemoListControls">
+    <md-content style="width: 1000px;margin: auto">
+        <md-list>
+            <md-divider></md-divider>
+            <md-subheader class="md-no-sticky" style="font-size: 36px">我的需求信息</md-subheader>
+            <md-list-item ng-repeat="person in people" ng-click="goToPerson(person.name, $event)">
+                <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar">
+                <p>{{ person.name }}</p>
+                <md-button class="md-primary md-raised" ng-click="showTabDialog($event,person.url)">
+                   查看详情
+                </md-button>
+            </md-list-item>
+            <md-divider></md-divider>
+
+        </md-list>
+    </md-content>
+</div>

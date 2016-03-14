@@ -1,0 +1,75 @@
+{
+  "code": 0,
+  "data":{
+    "leader": [
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      },
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      },
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      }
+    ],
+    "product": [
+      {
+        "name": "Sara",
+        "description": "星火大BOSS，主管"
+      },
+      {
+        "name": "Tim Smith",
+        "description": "星火大BOSS，主管"
+      },
+      {
+        "name": "Jack Smith",
+        "description": "星火大BOSS，主管"
+      }
+    ],
+    "frontend": [
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      },
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      },
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      }
+    ],
+    "developer":[
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      },
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      },
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      }
+    ],
+    "tester":[
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      },
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      },
+      {
+        "name": "John Smith",
+        "description": "星火大BOSS，主管"
+      }
+    ]
+  }
+}

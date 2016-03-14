@@ -8,9 +8,11 @@ define( [
 ] , function ( angular ) {
     return angular.module('application' , [] )
     .config( [
-        '$stateProvider', '$urlRouterProvider', '$httpProvider', '$rootScopeProvider',
+        '$stateProvider', '$urlRouterProvider', '$httpProvider', '$mdIconProvider', '$rootScopeProvider',
         //'$urlRouterProvider' ,
-        function ( $stateProvider, $urlRouterProvider, $httpProvider, $rootScopeProvider ) {
+        function ( $stateProvider, $urlRouterProvider, $httpProvider, $mdIconProvider, $rootScopeProvider ) {
+
+            $mdIconProvider.defaultIconSet('img/icons/sets/core-icons.svg', 24);
 
             // $rootScopeProvider.digestTtl(15);
 
@@ -63,7 +65,7 @@ define( [
 
 
             /**
-             * 加载依赖的辅助函数
+             * 鍔犺浇渚濊禆
              * @param deps
              * @returns {*[]}
              */
@@ -84,6 +86,8 @@ define( [
              * @type {String}
              */
 
+
+
             // reg
             $stateProvider.state( 'reg' , {
                 url : '/reg' ,
@@ -94,25 +98,142 @@ define( [
                         './modules/passport/reg'
                     ] )
                 }
-            } );
+            });
 
-            // index
-            $stateProvider.state( 'index' , {
-                url : '/index' ,
-                templateUrl : 'modules/index/index.html' ,
-                controller : 'IndexController' ,
+            // login
+            $stateProvider.state( 'login' , {
+                url : '/login' ,
+                templateUrl : 'modules/passport/login.html' ,
+                controller : 'LoginController' ,
                 resolve : {
                     load : loadDeps( [
-                        'modules/index/index'
+                        './modules/passport/login'
+                    ] )
+                }
+            } );
+            //test
+            $stateProvider.state( 'static.test' , {
+                url : '/test' ,
+                templateUrl : 'modules/test/test.html' ,
+                controller : 'AppCtrl' ,
+                resolve : {
+                    load : loadDeps( [
+                        'modules/test/test'
+                    ] )
+                }
+            } );
+            //user
+            $stateProvider.state( 'static.user' , {
+                url : '/user' ,
+                templateUrl : 'modules/user/user.html' ,
+                controller : 'UserManager' ,
+                resolve : {
+                    load : loadDeps( [
+                        'modules/user/user'
+                    ] )
+                }
+            });
+
+            $stateProvider.state('static', {
+                url: '/static',
+                templateUrl : 'modules/index/index.html' ,
+                absolute: true
+            });
+
+            $stateProvider.state('static.home', {
+                url: '/home',
+                templateUrl: 'modules/home/home.html',
+                controller: 'HomeController',
+                resolve: {
+                    load : loadDeps( [
+                        'modules/home/home',
+                        'modules/create/create'
+                    ] ),
+                    access: ['Access', function(Access) {
+                        return Access.isAuthenticated();
+                    }]
+                }
+            } );
+
+            $stateProvider.state('static.info', {
+                url: '/info/{itemId:[0-9|a-z|A-Z]+}',
+                templateUrl: 'modules/info/info.html',
+                controller: 'InfoController',
+                resolve: {
+                    load : loadDeps( [
+                        'modules/info/info'
+                    ] ),
+                    access: ['Access', function(Access) {
+                        return Access.isAuthenticated();
+                    }]
+                }
+            });
+
+
+            $stateProvider.state('static.organization', {
+                url: '/organization',
+                templateUrl: 'modules/organization/organization.html',
+                controller: 'OrganizationController',
+                resolve: {
+                    load : loadDeps( [
+                        'modules/organization/organization'
+                    ] )
+                }
+            });
+
+            $stateProvider.state('static.all', {
+                url: '/all',
+                templateUrl: 'modules/all/all.html',
+                controller: 'AllController',
+                resolve: {
+                    load : loadDeps( [
+                        'modules/all/all'
                     ] )
                 }
             } );
 
-            // 不能使用下面这句代码：
-            $urlRouterProvider.otherwise( '/' );
-            // 见 http://stackoverflow.com/questions/25065699/why-does-angularjs-with-ui-router-keep-firing-the-statechangestart-event
+            $stateProvider.state('static.account', {
+                url: '/account',
+                templateUrl: 'modules/account/account.html',
+                controller: 'AccountController',
+                resolve: {
+                    load : loadDeps( [
+                        'modules/account/account'
+                    ] )
+                }
+            } );
+
+
+            // otherwise
+            //$urlRouterProvider.otherwise( 'static.home' );
+            $urlRouterProvider.otherwise( function($injector, $location) {
+                var $state = $injector.get("$state");
+                $state.go("static.home");
+            });
 
         }
     ]);
+
+    /*.filter('keyboardShortcut', function($window) {
+        return function(str) {
+            if (!str) return;
+            var keys = str.split('-');
+            var isOSX = /Mac OS X/.test($window.navigator.userAgent);
+            var seperator = (!isOSX || keys.length > 2) ? '+' : '';
+            var abbreviations = {
+                M: isOSX ? '?' : 'Ctrl',
+                A: isOSX ? 'Option' : 'Alt',
+                S: 'Shift'
+            };
+            return keys.map(function(key, index) {
+                var last = index == keys.length - 1;
+                return last ? key : abbreviations[key];
+            }).join(seperator);
+        };
+    });
+     /*.config(function($mdIconProvider) {
+        $mdIconProvider
+            .defaultIconSet('img/icons/sets/core-icons.svg', 24);
+    });*/
 } );
 

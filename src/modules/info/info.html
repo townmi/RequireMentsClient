@@ -1,0 +1,471 @@
+<div header data-type="main"></div>
+<div class="inner" layout-margin id="layout" >
+    <div sidebar class="sidebar-left animated bounceInLeft"></div>
+    <main  class="main" ng-cloak>
+        <div style="margin: auto; width: 960px;" class=" animated bounceInUp" layout-padding>
+            <ol  class="ui-wizard">
+                <li ng-if="data.taskstatus >= 0" class="ui-wizard-node" ng-class="{'ui-wizard-node-done': data.taskstatus != 0, 'ui-wizard-node-active': data.taskstatus == 0}">
+                    <section>
+                        <span class="ui-wizard-node-number">1</span>
+                        <span class="ui-wizard-node-text" >
+                            需求提交&#45;&#45;&#45;&#45;<span>{{data.createdat | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;</span>
+                             <span class="label label-info">{{data.creatornickname}}提交了此需求</span>
+                        </span>
+                        <md-button  class="md-primary" ng-click="toggle($event)">展开详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line" >
+                        <div  class="ui-content-wrap" ng-style="{'height': data.taskstatus == 0 ? 'auto' : 0}">
+                            <md-content  layout-padding   ng-class="{'visible-hide': data.taskstatus != 0}">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">需求名称</span></dt>
+                                    <dd>{{data.name}}</dd>
+                                    <dt><span class="label label-primary">需求编号</span></dt>
+                                    <dd>{{data.taskid}}</dd>
+                                    <dt><span class="label label-primary">归属项目</span></dt>
+                                    <dd>{{data.belong}}</dd>
+                                    <dt><span class="label label-primary">需求描述</span></dt>
+                                    <dd>{{data.brief}}</dd>
+                                    <dt><span class="label label-primary">优先级</span></dt>
+                                    <dd>
+                                        <span class="item-priority" ng-class="{'priority-primary':data.priority == 1, 'priority-info':data.priority == 0,'priority-warn':data.priority == 2,'priority-danger':data.priority == 3}">{{priorityNames[data.priority]}}</span>
+                                    </dd>
+                                    <div style="clear:both;padding: 0;"></div>
+                                </dl>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>
+                <li ng-if="data.taskstatus >= 1" class="ui-wizard-node" ng-class="{'ui-wizard-node-done': data.taskstatus != 1, 'ui-wizard-node-active': data.taskstatus == 1}">
+                    <section>
+                        <span class="ui-wizard-node-number">2</span>
+                        <span class="ui-wizard-node-text" >
+                            需求审核&#45;&#45;&#45;&#45;<span>{{data.reviewdate | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;</span>
+                             <span class="label label-info">{{data.reviewnickname}}通过了此需求</span>
+                        </span>
+                        <md-button  class="md-primary" ng-click="toggle($event)">展开详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line">
+                        <div  class="ui-content-wrap" ng-style="{'height': data.taskstatus == 1 ? 'auto' : 0}">
+                            <md-content  layout-padding   ng-class="{'visible-hide': data.taskstatus != 1}">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">评语</span></dt>
+                                    <dd>{{data.reviewcomment}}</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>
+                <li ng-if="data.taskstatus >= 2" class="ui-wizard-node" ng-class="{'ui-wizard-node-done': data.taskstatus != 2, 'ui-wizard-node-active': data.taskstatus == 2}">
+                    <section>
+                        <span class="ui-wizard-node-number">3</span>
+                        <span class="ui-wizard-node-text" >
+                            策划方案&#45;&#45;&#45;&#45;<span>{{data.uploaddate | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;</span>
+                             <span class="label label-info">{{data.creatornickname}}上传了策划方案</span>
+                        </span>
+                        <md-button  class="md-primary" ng-click="toggle($event)">展开详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line">
+                        <div  class="ui-content-wrap" ng-style="{'height': data.taskstatus == 2 ? 'auto' : 0}">
+                            <md-content  layout-padding   ng-class="{'visible-hide': data.taskstatus != 2}">
+                                <dl class="content">
+                                    <dt style="padding-top: 15px;"><span class="label label-primary">附件</span></dt>
+                                    <dd><div ng-repeat="file in data.files" style="min-height: 48px;; line-height: 48px">
+                                        <a ng-href="{{file.path}}">{{file.nickname}}</a>
+                                        <md-button ng-click="deleteFile(file.url)" class="md-warn" ng-if="data.creatorid == data.user.id">
+                                            <md-icon class="material-icons" aria-label="删除">delete</md-icon>
+                                        </md-button>
+                                    </div>
+                                    </dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>
+                <li ng-if="data.taskstatus >= 3" class="ui-wizard-node" ng-class="{'ui-wizard-node-done': data.taskstatus != 3, 'ui-wizard-node-active': data.taskstatus == 3}">
+                    <section>
+                        <span class="ui-wizard-node-number">4</span>
+                        <span class="ui-wizard-node-text" >
+                            需求分派&#45;&#45;&#45;&#45;<span>{{data.postdate | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;</span>
+                             <span class="label label-info">{{data.creatornickname}}发起需求分派</span>
+                        </span>
+                        <md-button  class="md-primary" ng-click="toggle($event)">展开详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line">
+                        <div  class="ui-content-wrap" ng-style="{'height': data.taskstatus == 3 ? 'auto' : 0}">
+                            <md-content  layout-padding   ng-class="{'visible-hide': data.taskstatus != 3}">
+                                <md-content  layout-padding   ng-class="{'visible-hide': data.taskstatus != 4}">
+                                    <dl class="content">
+                                        <div ng-repeat="team in data.teams" style="clear: both">
+                                            <dt ><span class="label label-primary">{{team.groupstr}}</span></dt>
+                                            <dd><a style="margin-right: 10px;" ng-href="{{u.id}}" ng-repeat="u in data.parters | filter:{group: team.group}">{{u.nickname}}</a></dd>
+                                        </div>
+                                    </dl>
+                                    <div style="clear:both;padding: 0;"></div>
+                                </md-content>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>
+                <li ng-if="data.taskstatus >= 4" class="ui-wizard-node" ng-class="{'ui-wizard-node-done': data.taskstatus != 4, 'ui-wizard-node-active': data.taskstatus == 4}">
+                    <section>
+                        <span class="ui-wizard-node-number">5</span>
+                        <span class="ui-wizard-node-text" >
+                            需求锁定&#45;&#45;&#45;&#45;<span>{{data.lockdate | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;</span>
+                             <span class="label label-info">{{data.creatornickname}}将此需求锁定</span>
+                        </span>
+                        <md-button  class="md-primary" ng-click="toggle($event)">展开详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line">
+                        <div  class="ui-content-wrap" ng-style="{'height': data.taskstatus == 4 ? 'auto' : 0}">
+                            <md-content  layout-padding   ng-class="{'visible-hide': data.taskstatus != 4}">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>需求将从{{data.lockat}}起锁定24小时，请相关人员仔细阅读文档。</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>
+                <li ng-if="data.taskstatus >= 5" class="ui-wizard-node" ng-class="{'ui-wizard-node-done': data.taskstatus != 5, 'ui-wizard-node-active': data.taskstatus == 5}">
+                    <section>
+                        <span class="ui-wizard-node-number">6</span>
+                        <span class="ui-wizard-node-text" >
+                            三方审核&#45;&#45;&#45;&#45;<span>{{data.auditdate | date:'yyyy-MM-dd HH:mm:ss'}}&nbsp;&nbsp;</span>
+                             <span class="label label-info">{{data.creatornickname}}提交了此需求</span>
+                        </span>
+                        <md-button  class="md-primary" ng-click="toggle($event)">展开详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line">
+                        <div  class="ui-content-wrap" ng-style="{'height': data.taskstatus == 5 ? 'auto' : 0}">
+                            <md-content  layout-padding   ng-class="{'visible-hide': data.taskstatus != 5}">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">会议时间</span></dt>
+                                    <dd>{{data.meettime | date:'yyyy-MM-dd HH:mm:ss'}} </dd>
+                                    <dt><span class="label label-primary">会议地点</span></dt>
+                                    <dd>{{data.meetroom}}</dd>
+                                    <div ng-repeat="t in data.teams" style="clear: both">
+                                        <dt><span class="label label-primary">{{t.group}}-DeadLine</span></dt>
+                                        <dd>{{t.startdate | date:'yyyy-MM-dd HH:mm:ss'}}--{{t.enddate  | date:'yyyy-MM-dd HH:mm:ss' }} </dd>
+                                    </div>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>
+                <li ng-if="data.taskstatus >= 6" class="ui-wizard-node" ng-class="{'ui-wizard-node-done': data.taskstatus != 6, 'ui-wizard-node-active': data.taskstatus == 6}">
+                    <section>
+                        <span class="ui-wizard-node-number">7</span>
+                        <span class="ui-wizard-node-text" >
+                            开发阶段&#45;&#45;&#45;&#45;<span>{{data.developat}}</span>
+                            <span class="label label-info">{{data.taskstatus == 6 ? '开发阶进行中': '开发完毕'}}</span>
+                        </span>
+                        <md-button  class="md-primary" ng-click="toggle($event)">展开详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line">
+                        <div  class="ui-content-wrap" ng-style="{'height': data.taskstatus == 6 ? 'auto' : 0}">
+                            <md-content  layout-padding   ng-class="{'visible-hide': data.taskstatus != 6}">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>{{data.taskstatus == 6 ? '开发阶进行中': '开发完毕'}}</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>
+                <li ng-if="data.taskstatus >= 7" class="ui-wizard-node" ng-class="{'ui-wizard-node-done': data.taskstatus != 7, 'ui-wizard-node-active': data.taskstatus == 7}">
+                    <section>
+                        <span class="ui-wizard-node-number">8</span>
+                        <span class="ui-wizard-node-text" >
+                            测试阶段&#45;&#45;&#45;&#45;<span>{{data.testat}}</span>
+                            <span class="label label-info">{{data.taskstatus == 7 ? '测试阶进行中': '测试完毕'}}</span>
+                        </span>
+                        <md-button  class="md-primary" ng-click="toggle($event)">展开详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line">
+                        <div  class="ui-content-wrap" ng-style="{'height': data.taskstatus == 7 ? 'auto' : 0}">
+                            <md-content  layout-padding   ng-class="{'visible-hide': data.taskstatus != 7}">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>{{data.taskstatus == 7 ? '测试阶进行中': '测试完毕'}}</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>
+                <li ng-if="data.taskstatus >= 8" class="ui-wizard-node" ng-class="{'ui-wizard-node-done': data.taskstatus != 8, 'ui-wizard-node-active': data.taskstatus == 8}">
+                    <section>
+                        <span class="ui-wizard-node-number">9</span>
+                        <span class="ui-wizard-node-text" >
+                            上线阶段&#45;&#45;&#45;&#45;<span>{{data.lineat}}</span>
+                            <span class="label label-info">{{data.taskstatus == 8 ? '上线阶进行中': '上线完毕'}}</span>
+                        </span>
+                        <md-button  class="md-primary" ng-click="toggle($event)">展开详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line">
+                        <div  class="ui-content-wrap" ng-style="{'height': data.taskstatus == 8 ? 'auto' : 0}">
+                            <md-content  layout-padding   ng-class="{'visible-hide': data.taskstatus != 8}">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>{{data.taskstatus ==8 ? '上线阶进行中': '上线完毕'}}</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>
+                <li ng-if="data.taskstatus >= 9" class="ui-wizard-node" ng-class="{'ui-wizard-node-done': data.taskstatus != 9, 'ui-wizard-node-active': data.taskstatus == 9}">
+                    <section>
+                        <span class="ui-wizard-node-number">10</span>
+                        <span class="ui-wizard-node-text" >
+                            需求关闭&#45;&#45;&#45;&#45;<span>{{data.closeat}}</span>
+                        </span>
+                    </section>
+                </li>
+                <!--<li class="ui-wizard-node  ui-wizard-node-done" ng-repeat="item in data.details">
+                    <section>
+                        <span class="ui-wizard-node-number"><span>{{item.process}}</span></span>
+                        <span class="ui-wizard-node-text" >{{item.title}}&#45;&#45;&#45;&#45;<span>{{item.date}}</span>
+                            <span ng-if="item.process == 1" class="label label-info">{{data.basic.creator.name}}提交了此需求</span>
+                            <span ng-if="item.process == 2" class="label label-info">{{data.basic.reviewer.name}}{{item.info.status == 'pass' ? '通过': '退回'}}了此需求</span>
+                            <span ng-if="item.process == 3" class="label label-info">{{data.basic.creator.name}}上传了策划方案</span>
+                            <span ng-if="item.process == 4" class="label label-info">根据策划方案进行需求分派</span>
+                            <span ng-if="item.process == 5" class="label label-info">{{data.basic.creator.name}}将需求锁定</span>
+                            <span ng-if="item.process == 6" class="label label-info">{{data.basic.creator.name}}发起三方审核</span>
+                            <span ng-if="item.process == 7" class="label label-info">开发完毕</span>
+                            <span ng-if="item.process == 8" class="label label-info">测试完毕</span>
+                            <span ng-if="item.process == 9" class="label label-info">上线完毕</span>
+                        </span>
+                        <md-button  class="md-primary" ng-click="toggle(item.process, $event)">展开详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line" >
+                        <div style="height: 0;" class="ui-content-wrap">
+                            <md-content  layout-padding   class="visible-hide"  ng-if="item.process == 1">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">需求名称</span></dt>
+                                    <dd>{{data.basic.name}}</dd>
+                                    <dt><span class="label label-primary">需求编号</span></dt>
+                                    <dd>{{data.basic.number}}</dd>
+                                    <dt><span class="label label-primary">归属项目</span></dt>
+                                    <dd>{{data.basic.project}}</dd>
+                                    <dt><span class="label label-primary">来源</span></dt>
+                                    <dd>{{data.basic.source}}</dd>
+                                    <dt><span class="label label-primary">需求描述</span></dt>
+                                    <dd>{{data.basic.description}}</dd>
+                                    <dt><span class="label label-primary">优先级</span></dt>
+                                    <dd>
+                                        <span class="item-status status-submit">{{data.basic.priority}}</span>
+                                    </dd>
+                                    <div style="clear:both;padding: 0;"></div>
+                                </dl>
+                            </md-content>
+                            <md-content  layout-padding  class="visible-hide" ng-if="item.process == 2">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">评语</span></dt>
+                                    <dd>{{item.info.comment}}</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="visible-hide" ng-if="item.process == 3">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">附件</span></dt>
+                                    <dd><a ng-href="{{file.url}}" ng-repeat="file in item.info.attachment">{{file.filename}}</a></dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="visible-hide" ng-if="item.process == 4">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">开发人员</span></dt>
+                                    <dd><a ng-href="{{u.userId}}" ng-repeat="u in item.info.developer">{{u.name}}</a><br /></dd>
+                                    <dt><span class="label label-primary">测试人员</span></dt>
+                                    <dd><a ng-href="{{u.userId}}" ng-repeat="u in item.info.tester">{{u.name}}</a><br /></dd>
+                                    <dt><span class="label label-primary">前端人员</span></dt>
+                                    <dd><a ng-href="{{u.userId}}" ng-repeat="u in item.info.fe">{{u.name}}</a><br /></dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="visible-hide" ng-if="item.process == 5 ">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>需求将在{{item.info.from}}&#45;&#45;{{item.info.to}}锁定，请相关人员仔细阅读文档。</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="visible-hide" ng-if="item.process == 6">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">开发DeadLine</span></dt>
+                                    <dd>{{item.info.developer.from}}&#45;&#45;{{item.info.developer.to}}</dd>
+                                    <dt><span class="label label-primary">测试DeadLine</span></dt>
+                                    <dd>{{item.info.tester.from}}&#45;&#45;{{item.info.tester.to}}</dd>
+                                    <dt><span class="label label-primary">前端DeadLine</span></dt>
+                                    <dd>{{item.info.fe.from}}&#45;&#45;{{item.info.fe.to}}</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="visible-hide" ng-if="item.process == 7">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>开发阶段完毕</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="visible-hide" ng-if="item.process == 8">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>测试阶段完毕</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="visible-hide" ng-if="item.process == 9">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>上线阶段完毕</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>
+                <li class="ui-wizard-node ui-wizard-node-active">
+                    <section style="overflow: hidden;">
+                        <span class="ui-wizard-node-number"><span>{{data.process}}</span></span>
+                        <span class="ui-wizard-node-text">{{data.title}}&#45;&#45;&#45;&#45;<span>{{data.date}}</span>
+                            <span ng-if="data.process == 1" class="label label-info">{{data.basic.creator.name}}提交了此需求</span>
+                            <span ng-if="data.process == 2" class="label label-info">{{data.basic.reviewer.name}}{{item.info.status == 'pass' ? '通过': '退回'}}了此需求</span>
+                            <span ng-if="data.process == 3" class="label label-info">{{data.basic.creator.name}}上传了策划方案</span>
+                            <span ng-if="data.process == 4" class="label label-info">根据策划方案进行需求分派</span>
+                            <span ng-if="data.process == 5" class="label label-info">{{data.basic.creator.name}}将需求锁定</span>
+                            <span ng-if="data.process == 6" class="label label-info">{{data.basic.creator.name}}发起三方审核</span>
+                            <span ng-if="data.process == 7" class="label label-info">开发进行中</span>
+                            <span ng-if="data.process == 8" class="label label-info">测试进行中</span>
+                            <span ng-if="data.process == 9" class="label label-info">上线进行中</span>
+                            <span ng-if="data.process == 10" class="label label-info">需求关闭</span>
+                        </span>
+                        <md-button ng-if="data.process != 10" class="md-primary"  ng-click="toggle(item.process, $event)">收起详情</md-button>
+                    </section>
+                    <section class="ui-wizard-line" id="current">
+                        <div class="ui-content-wrap">
+                            <md-content  layout-padding   class=""  ng-if="data.process == 1">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">需求名称</span></dt>
+                                    <dd>{{data.basic.name}}</dd>
+                                    <dt><span class="label label-primary">需求编号</span></dt>
+                                    <dd>{{data.basic.number}}</dd>
+                                    <dt><span class="label label-primary">归属项目</span></dt>
+                                    <dd>{{data.basic.project}}</dd>
+                                    <dt><span class="label label-primary">来源</span></dt>
+                                    <dd>{{data.basic.source}}</dd>
+                                    <dt><span class="label label-primary">需求描述</span></dt>
+                                    <dd>{{data.basic.description}}</dd>
+                                    <dt><span class="label label-primary">优先级</span></dt>
+                                    <dd>
+                                        <span class="item-status status-submit">{{data.basic.priority}}</span>
+                                    </dd>
+                                    <div style="clear:both;padding: 0;"></div>
+                                </dl>
+                            </md-content>
+                            <md-content  layout-padding  class="" ng-if="data.process == 2 ">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">评语</span></dt>
+                                    <dd>{{data.info.comment}}</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="" ng-if="data.process == 3">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">附件</span></dt>
+                                    <dd><a ng-href="{{file.url}}" ng-repeat="file in data.info.attachment">{{file.filename}}</a></dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="" ng-if="data.process == 4">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">开发人员</span></dt>
+                                    <dd><a ng-href="{{u.userId}}" ng-repeat="u in data.info.developer">{{u.name}}</a><br /></dd>
+                                    <dt><span class="label label-primary">测试人员</span></dt>
+                                    <dd><a ng-href="{{u.userId}}" ng-repeat="u in data.info.tester">{{u.name}}</a><br /></dd>
+                                    <dt><span class="label label-primary">前端人员</span></dt>
+                                    <dd><a ng-href="{{u.userId}}" ng-repeat="u in data.info.fe">{{u.name}}</a><br /></dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="" ng-if="data.process == 5 ">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>需求将在{{data.info.from}}&#45;&#45;{{data.info.to}}锁定，请相关人员仔细阅读文档。</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="" ng-if="data.process == 6">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">开发DeadLine</span></dt>
+                                    <dd>{{data.info.developer.from}}&#45;&#45;{{data.info.developer.to}}</dd>
+                                    <dt><span class="label label-primary">测试DeadLine</span></dt>
+                                    <dd>{{data.info.tester.from}}&#45;&#45;{{data.info.tester.to}}</dd>
+                                    <dt><span class="label label-primary">前端DeadLine</span></dt>
+                                    <dd>{{data.info.fe.from}}&#45;&#45;{{data.info.fe.to}}</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="" ng-if="data.process == 7">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>开发阶段进行中</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="" ng-if="data.process == 8">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>测试阶段进行中</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                            <md-content  layout-padding  class="" ng-if="data.process == 9">
+                                <dl class="content">
+                                    <dt><span class="label label-primary">说明</span></dt>
+                                    <dd>上线阶段进行中</dd>
+                                </dl>
+                                <div style="clear:both;padding: 0;"></div>
+                            </md-content>
+                        </div>
+                    </section>
+                </li>-->
+
+            </ol>
+        </div>
+    </main>
+
+</div>
+<div style="position: fixed; right: 50px;bottom: 150px;">
+    <md-fab-speed-dial ng-show="demo.show" md-direction="left" md-open="demo.isOpen"
+                       class="md-scale md-fab-top-right" ng-class="{ 'md-hover-full': demo.isOpen }"
+                       ng-mouseenter="demo.isOpen=true" ng-mouseleave="demo.isOpen=false">
+        <md-fab-trigger>
+            <md-button aria-label="menu" class="md-fab md-warn">
+                <md-icon class="material-icons">menu</md-icon>
+            </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+            <div ng-repeat="item in operations">
+                <md-button aria-label="{{item.name}}" class="md-fab md-raised md-mini"
+                           ng-click="openDialog($event, item.type)">
+                    <md-icon class="material-icons" style="color:#999" aria-label="{{item.name}}">{{item.icon}}</md-icon>
+                </md-button>
+            </div>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+</div>
+
+
+
+
+
+
+
+
